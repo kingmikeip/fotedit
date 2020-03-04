@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import DragItems from './components/DragItems'
+// import axios from 'axios'
 
 function App() {
+  // const [file,setFile] = useState(null)
+
+  // const handleFile = (e) => {
+  //   setFile(e.target.files[0]);
+  //   console.log(e.target.files[0]);
+  // }
+
+  // const fileUpload = async (e) => {
+  //   const fd = new FormData();
+  //   fd.append('image', file, file.name)
+  //   // let response = await axios.post('./');
+  //   console.log(file)
+
+  // }
+// add multiple in input for multiple files
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <input type="file" onChange={handleFile}/>
+      <button onClick={fileUpload}>Upload</button> */}
+      <DragItems/>
     </div>
   );
 }

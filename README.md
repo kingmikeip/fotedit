@@ -1,68 +1,119 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## FotEdit
 
-## Available Scripts
+FotEdit is an app that allows users to easily share their photo edits with others and compare the different edits. 
 
-In the project directory, you can run:
+Users can upload photos (currently limited to 1200px and up to 50 photos).
 
-### `yarn start`
+They are initially displayed by file name order.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+From there the user can rearrange photos, tag them with numbers or add colors to them. They can also attach comments or critiques to specific photos to explain their choices.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Owners of galleries can share out their galleries for other people to edit. These edits will create a new instance of the gallery and not touch the original.
 
-### `yarn test`
+### Interface
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Currently it will be developed in ReactJS with a Ruby on Rails backend. It will eventually be ported to React Native for Tablets and mobile.
 
-### `yarn build`
+Images will be stored on AWS.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Users will need be authenticated and checked for authorization.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Guest users can only view specific gallery they have the share code for. If a user doesn't log in, the guest session will be created temporarily as a tempUser, but session will not persist.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Wireframes 
 
-### `yarn eject`
+![WireFrame](./assets/FotEdit_WireFrame.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Functionality Goals
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### *MVP*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- get wireframe built out
+- get Rails backend working to handle image uploads
+- get React working to display images
+- images can be reordered by number or drag order
+- images can have comments or checks
+- user can share out galleries with unique share codes
+- Rails stores images on cloud 
+- create new users, login, delete or edit account details
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### *Post MVP*
 
-## Learn More
+- persist sessions, guest sessions
+- drag to reorder images
+- OAuth 
+- later social aspect will be added so users in a group can be invited for an edit
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### React Component Hierarchy
 
-### Code Splitting
+![](./assets/React_Component_Diagram.jpg)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+#### Components
+| Component Name | Description         |
+|----------------|---------------------|
+| App            | Top Level Component |
+| UserLogin      | Logs in user or guest login |
+| UserCreate     | Creates a new user |
+| Header         | Shared header      |
+| ControlPanel   | User info and brains of the app |
+| UserDelete     | Deletes user        |
+| GalleryShare   | Generates share code, shares with others |
+| Main           | Loads images and allows gallery operations |
+| GalleryCreate  | User uploads images and creates galleries |
+| GalleryView    | Overview of images, displays and allows editing here. Images can be sorted, tagged and ordered here |
+| ImageView      | View single image. User can zoom in, comment or select images | 
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Rails Controllers / Routes 
 
-### Making a Progressive Web App
+UserController
+GalleryController
+EditController
+PhotoController
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+#### Routes
 
-### Advanced Configuration
+| Controller | Operation | VERB | Route |
+|-------|---------|------------|---------|
+| User  | #view | GET | /user/:id|
+| User | #create | POST | /user |
+| User | #update | Put | /user/:id |
+| User | #delete | DELETE | /user/:id |
+| Gallery | #index | GET | /user/:id/gallery
+| Gallery | #view | GET | gallery/:id|
+| Gallery | #create | POST | gallery |
+| Gallery | #update | Put | gallery/:id |
+| Gallery | #delete | DELETE | gallery/:id |
+| Edit  | #view | GET | gallery/:id/edit/:id|
+| Edit | #create | POST | gallery/:id/edit |
+| Edit | #update | Put | gallery/:id/edit/:id |
+| Edit | #delete | DELETE | gallery/:id/edit/:id |
+| Photo  | #view | GET | /photo/:id|
+| Photo | #create | POST | /photo |
+| Photo | #update | Put | /photo/:id |
+| Photo | #delete | DELETE | /photo/:id |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Additional Libraries
+### React
 
-### `yarn build` fails to minify
+- Axios
+- React Router 
+- React-Draggable
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Rails
+
+- Exif-js or exif-reader
+- CORS
+- bcrypt
+
+### ERD
+
+![](./assets/FotEdit_ERD.jpg)
+
+### Issues and Resolutions
+
+- Potential issue - if a guest editor closes out their edit by accident, how will they re-access their edit? Generate an instance code? Maybe allow guest user to see other edits?
