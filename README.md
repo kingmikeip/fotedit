@@ -1,4 +1,4 @@
-## FotEdit
+# FotEdit
 
 FotEdit is an app that allows users to easily share their photo edits with others and compare the different edits. 
 
