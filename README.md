@@ -95,6 +95,19 @@ PhotoController
 | Photo | #delete | DELETE | /photo/:id |
 
 
+#### Priority Matrix
+![](./assets/FotEdit_PriorityMaxtrix.jpg)
+
+#### Time Frames
+| Component | Priority | Estimated Time | Time Invested | Actual |
+|-----|-----|------|------|------|
+| Wireframe | H | 12 hrs | | |
+| File Uploads (Front End) | H | 6 hrs | | |
+| Upload to AWS | H | 12 hrs | | | 
+| Images retrieved and rendered front end | H | 8 hrs | | |
+| User Auth | H | 12 hrs | | |
+| Sharing | M | 5 hrs | | |
+| Total | | 
 
 ## Additional Libraries
 ### React
