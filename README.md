@@ -22,6 +22,8 @@ Guest users can only view specific gallery they have the share code for. If a us
 
 ### Wireframes 
 
+These wireframes will be for desktop and tablet views. They will look similar with slightly different views based on screen size. Mobile will initially load tablet version. The nature of the app will not be ideally useable on smaller devices.
+
 ![WireFrame](./assets/FotEdit_WireFrame.jpg)
 
 ### Functionality Goals
@@ -43,6 +45,13 @@ Guest users can only view specific gallery they have the share code for. If a us
 - drag to reorder images
 - OAuth 
 - later social aspect will be added so users in a group can be invited for an edit
+
+#### *Post Post MVP (near future features)*
+
+- refactor for react native
+- add unlimited size and number of images upload
+- email confirmation of shares, new gallery created
+- pay structure for heavy users
 
 
 ### React Component Hierarchy
@@ -107,7 +116,19 @@ PhotoController
 | Images retrieved and rendered front end | H | 8 hrs | | |
 | User Auth | H | 12 hrs | | |
 | Sharing | M | 5 hrs | | |
-| Total | | 
+| Total | | 55 hrs | | |
+
+### Project Schedule
+| Day | Deliverable | Status |
+|------|------------|------------|
+| March 5 | Project approval | |
+| March 6 | Wireframe built out | |
+| March 7-8 | Rails server + File uploading working | |
+| March 9 | User Auth | | 
+| March 10 | Front End Functional (Images loading) | |
+| March 11 | Front End Fully Functional + Sharing | |
+| March 12 | Bug Fixing and styling | |
+
 
 ## Additional Libraries
 ### React
