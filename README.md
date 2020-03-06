@@ -110,13 +110,13 @@ PhotoController
 #### Time Frames
 | Component | Priority | Estimated Time | Time Invested | Actual |
 |-----|-----|------|------|------|
-| Wireframe | H | 12 hrs | | |
-| File Uploads (Front End) | H | 6 hrs | | |
+| Wireframe | H | 12 hrs | 2 hrs | |
+| File Uploads (Front End) | H | 8 hrs | | |
 | Upload to AWS | H | 12 hrs | | | 
 | Images retrieved and rendered front end | H | 8 hrs | | |
-| User Auth | H | 12 hrs | | |
+| User Auth | H | 14 hrs | | |
 | Sharing | M | 5 hrs | | |
-| Total | | 55 hrs | | |
+| Total | | 59 hrs | | |
 
 ### Project Schedule
 | Day | Deliverable | Status |

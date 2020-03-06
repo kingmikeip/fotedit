@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Splash from './shared/Splash'
 
-export default function UserLogin(props) {
+export default function GuestLogin(props) {
     const style = {
         formstyle: {
             width: "20vw",
@@ -30,24 +30,34 @@ export default function UserLogin(props) {
             fontSize: "16px",
             fontWeight: "bold",
             margin: "10px 0 0 0"
+        },
+        welcometext: {
+            fontSize: "45px"
+        },
+        textwrapper: {
+            margin: "0 auto",
+            width: "70vw"
         }
     }
-    
+
     // handleChange
     // submit
 
     return (
         <div>
-            <Splash />
+            <div style={style.textwrapper}>
+                <p style={style.welcometext}>Welcome! Please enter your name and your edit code we'll get started!</p>
+            </div>
+
             <form style={style.formposition}>
                 <div>
-                <input type="text" placeholder="Username" style={style.formstyle}></input>
+                    <input type="text" placeholder="Your Name" style={style.formstyle}></input>
                 </div>
                 <div>
-                <input type="text" placeholder="Password" style={style.formstyle}></input>
+                    <input type="text" placeholder="Edit Code" style={style.formstyle}></input>
                 </div>
-                <button style={style.loginbutton}>Login</button>
-                <p>Guest Editor?</p>
+                <button style={style.loginbutton}>Let's Go!</button>
+
             </form>
         </div>
     )

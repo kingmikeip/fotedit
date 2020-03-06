@@ -3,6 +3,7 @@ import './App.css';
 import DragItems from './components/DragItems'
 import UserLogin from './components/UserLogin'
 import Header from './components/shared/Header'
+import GuestLogin from './components/GuestLogin'
 import { Route } from 'react-router-dom'
 // import axios from 'axios'
 
@@ -26,6 +27,8 @@ function App() {
     <div className="App">
       <Header/>
       <UserLogin />
+      {/* <GuestLogin/> */}
+
       {/* <input type="file" onChange={handleFile}/>
       <button onClick={fileUpload}>Upload</button> */}
       {/* <DragItems/> */}
