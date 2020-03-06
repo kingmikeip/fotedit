@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import DragItems from './components/DragItems'
+import UserLogin from './components/UserLogin'
+import Header from './components/shared/Header'
+import { Route } from 'react-router-dom'
 // import axios from 'axios'
 
 function App() {
@@ -18,12 +21,14 @@ function App() {
   //   console.log(file)
 
   // }
-// add multiple in input for multiple files
+  // add multiple in input for multiple files
   return (
     <div className="App">
+      <Header/>
+      <UserLogin />
       {/* <input type="file" onChange={handleFile}/>
       <button onClick={fileUpload}>Upload</button> */}
-      <DragItems/>
+      {/* <DragItems/> */}
     </div>
   );
 }
