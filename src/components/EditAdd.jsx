@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './shared/Header'
 
 // waiting for back end
 
@@ -32,7 +33,8 @@ export default function EditAdd (props) {
             margin: "10px 0 0 0"
         },
         welcometext: {
-            fontSize: "45px"
+            fontSize: "45px",
+            fontWeight: "bold"
         },
         welcometextsm: {
             fontSize: "32px"
@@ -43,6 +45,8 @@ export default function EditAdd (props) {
         }
     }
     return (
+        <div>
+            <Header />
         <div style={style.textwrapper}>
             <p style={style.welcometext}>Add an Edit</p>
             <p style={style.welcometextsm}>Please enter an edit code and it will be added to your list of current events.</p>
@@ -54,6 +58,7 @@ export default function EditAdd (props) {
                 <button style={style.loginbutton}>Add Edit</button>
 
             </form>
+        </div>
         </div>
     )
 }

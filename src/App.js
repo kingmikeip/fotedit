@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom'
 import GalleryCreate from './components/GalleryCreate'
 import GalleryView from './components/GalleryView'
 import EditAdd from './components/EditAdd'
+import EditShare from './components/EditShare'
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
       {/* <GuestLogin/> */}
       {/* <GalleryCreate /> */}
       {/* <GalleryView /> */}
-      <EditAdd />
+      {/* <EditAdd /> */}
+      <EditShare />
     </div>
   );
 }
