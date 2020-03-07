@@ -9,7 +9,22 @@ import GalleryCreate from './components/GalleryCreate'
 import GalleryView from './components/GalleryView'
 import EditAdd from './components/EditAdd'
 import EditShare from './components/EditShare'
+import ImageView from './components/ImageView'
 
+/*
+App -> Header*
+    -> UserLogin* -> ControlPanel -> EditAdd*
+                                 -> EditShare*
+                                 -> GalleryCreate*
+                                 -> GalleryView*
+                 -> GuestLogin* -> GalleryView*
+
+GalleryView* -> ImageView
+
+to do:
+ControlPanel
+ImageView
+*/
 
 function App() {
 
@@ -22,7 +37,8 @@ function App() {
       {/* <GalleryCreate /> */}
       {/* <GalleryView /> */}
       {/* <EditAdd /> */}
-      <EditShare />
+      {/* <EditShare /> */}
+      <ImageView />
     </div>
   );
 }

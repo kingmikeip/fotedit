@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Draggable, { DraggableCore } from 'react-draggable'
 import google from '../assets/google.png'
 
+// not an app component
+
 export default function DragItems(props) {
 
     const [file, setFile] = useState(null)

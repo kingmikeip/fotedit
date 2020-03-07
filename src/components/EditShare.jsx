@@ -69,6 +69,11 @@ export default function EditShare(props) {
             margin: "0 auto"
         }
     }
+
+    // handlechange
+    // submit
+    // generate share code?
+
     return (
         <div style={style.formcontainer}>
             <p style={style.welcometext}>Share Edit</p>
