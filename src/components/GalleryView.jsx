@@ -10,6 +10,8 @@ import cat007 from './assets/cat007.jpg'
 import cat008 from './assets/cat008.jpg'
 import cat009 from './assets/cat009.jpg'
 
+// awaiting backend get
+
 export default function GalleryView(props) {
     const [height, setHeight] = useState('25vw');
     const [width, setWidth] = useState('25vw')

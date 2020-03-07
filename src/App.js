@@ -7,6 +7,7 @@ import GuestLogin from './components/GuestLogin'
 import { Route } from 'react-router-dom'
 import GalleryCreate from './components/GalleryCreate'
 import GalleryView from './components/GalleryView'
+import EditAdd from './components/EditAdd'
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       {/* <UserLogin /> */}
       {/* <GuestLogin/> */}
       {/* <GalleryCreate /> */}
-      <GalleryView />
+      {/* <GalleryView /> */}
+      <EditAdd />
     </div>
   );
 }
