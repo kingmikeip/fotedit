@@ -43,7 +43,7 @@ export default function UserLogin(props) {
             <Splash />
             <form style={style.formposition}>
                 <div>
-                <input type="text" placeholder="Username" style={style.formstyle}></input>
+                <input type="text" placeholder="Email" style={style.formstyle}></input>
                 </div>
                 <div>
                 <input type="text" placeholder="Password" style={style.formstyle}></input>

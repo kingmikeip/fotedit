@@ -10,6 +10,7 @@ import GalleryView from './components/GalleryView'
 import EditAdd from './components/EditAdd'
 import EditShare from './components/EditShare'
 import ImageView from './components/ImageView'
+import UserCreate from './components/UserCreate'
 
 /*
 App -> Header*
@@ -38,7 +39,8 @@ function App() {
       {/* <GalleryView /> */}
       {/* <EditAdd /> */}
       {/* <EditShare /> */}
-      <ImageView />
+      {/* <ImageView /> */}
+      <UserCreate />
     </div>
   );
 }

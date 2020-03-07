@@ -7,14 +7,15 @@ export default function ImageView(props) {
     const style = {
         bodystyle: {
             width: "100%",
-            margin: "2px"
+            margin: "8px 0"
         },
         topstyle: {
             width: "98%",
             height: "75vh",
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            margin: "0 auto"
         },
         imagestyle: {
             width: "80%",
@@ -26,8 +27,9 @@ export default function ImageView(props) {
         },
         captionstyle: {
             width: "98%",
-            height: "16vh",
+            height: "15vh",
             border: "1px solid black",
+            margin: "0 auto",
             marginTop: "10px"
         }
     }
