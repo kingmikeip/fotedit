@@ -90,18 +90,14 @@ PhotoController
 | User | #update | Put | /user/:id |
 | User | #delete | DELETE | /user/:id |
 | Gallery | #index | GET | /user/:id/gallery
-| Gallery | #view | GET | gallery/:id|
-| Gallery | #create | POST | gallery |
-| Gallery | #update | Put | gallery/:id |
-| Gallery | #delete | DELETE | gallery/:id |
-| Edit  | #view | GET | gallery/:id/edit/:id|
-| Edit | #create | POST | gallery/:id/edit |
-| Edit | #update | Put | gallery/:id/edit/:id |
-| Edit | #delete | DELETE | gallery/:id/edit/:id |
-| Photo  | #view | GET | /photo/:id|
-| Photo | #create | POST | /photo |
-| Photo | #update | Put | /photo/:id |
-| Photo | #delete | DELETE | /photo/:id |
+| Gallery | #view | GET | /gallery/:id|
+| Gallery | #create | POST | /gallery |
+| Gallery | #update | Put | /gallery/:id |
+| Gallery | #delete | DELETE | /gallery/:id |
+| Photo  | #view | GET | /gallery/:gallery_id/photo/:id|
+| Photo | #create | POST | /gallery/:gallery_id/photo |
+| Photo | #update | Put | /gallery/:gallery_id/photo/:id |
+| Photo | #delete | DELETE | /gallery/:gallery_id/photo/:id |
 
 
 #### Priority Matrix
@@ -110,20 +106,21 @@ PhotoController
 #### Time Frames
 | Component | Priority | Estimated Time | Time Invested | Actual |
 |-----|-----|------|------|------|
-| Wireframe | H | 12 hrs | 2 hrs | |
-| File Uploads (Front End) | H | 8 hrs | | |
-| Upload to AWS | H | 12 hrs | | | 
+| Wireframe | H | 12 hrs | 5 hrs | |
+| File Uploads (Front End) | H | 8 hrs | 2 hrs | |
+| Upload to AWS | H | 12 hrs | 4 hrs | | 
 | Images retrieved and rendered front end | H | 8 hrs | | |
 | User Auth | H | 14 hrs | | |
 | Sharing | M | 5 hrs | | |
-| Total | | 59 hrs | | |
+| Styling | M | 8 hrs | | | 
+| Total | | 67 hrs | | |
 
 ### Project Schedule
 | Day | Deliverable | Status |
 |------|------------|------------|
-| March 5 | Project approval | |
-| March 6 | Wireframe built out | |
-| March 7-8 | Rails server + File uploading working | |
+| March 5 | Project approval | Complete |
+| March 6 | Wireframe built out | In progress |
+| March 7-8 | Rails server + File uploading working | In Progress |
 | March 9 | User Auth | | 
 | March 10 | Front End Functional (Images loading) | |
 | March 11 | Front End Fully Functional + Sharing | |
@@ -137,12 +134,12 @@ PhotoController
 - React Router 
 - React-Draggable
 
-
 ### Rails
 
 - Exif-js or exif-reader
 - CORS
 - bcrypt
+- AWS
 
 ### ERD
 

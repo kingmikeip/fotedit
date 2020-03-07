@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Splash from './shared/Splash'
 
+// to do await backend auth
+
 export default function UserLogin(props) {
     const style = {
         formstyle: {

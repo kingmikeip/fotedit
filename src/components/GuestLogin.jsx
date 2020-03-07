@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Splash from './shared/Splash'
 
+// awaiting backend route
+
 export default function GuestLogin(props) {
     const style = {
         formstyle: {
