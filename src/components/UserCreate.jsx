@@ -1,9 +1,64 @@
-// awaiting backend route
-// upon user creation => control panel
+// user create -> need to redirect to control panel (needs to be made)
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+
+const apiUrl = 'http://localhost:3000'
 
 export default function UserCreate(props) {
+
+    const [nameEmail, setNameEmail] = useState({});
+    const [password, setPassword] = useState({});
+    const [passwordOk, setPasswordOk] = useState(true);
+    const [passwordMatch, setPasswordMatch] = useState(true);
+
+    const handleInput = (e) => {
+        let temp = e.target.value;
+        let name = e.target.name;
+        if (name === 'password' || name === 'repeat') {
+            setPassword((prev) => ({ ...prev, [name]: temp }))
+            // console.log(password);
+        } else {
+            setNameEmail((prev) => ({ ...prev, [name]: temp }))
+            // console.log(nameEmail);
+        }
+    }
+
+    useEffect(() => {
+        if (password.password && password.password.length < 8) {
+            setPasswordOk(false);
+        } else {
+            setPasswordOk(true);
+        }
+        if (password.password !== password.repeat) {
+            setPasswordMatch(false);
+        } else {
+            setPasswordMatch(true)
+        }
+    }, [password])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log("creating user")
+        try {
+            let response = await axios({
+                url: `${apiUrl}/users`,
+                method: 'POST',
+                data: {
+                    user:
+                    {
+                        name: nameEmail.name,
+                        email: nameEmail.email,
+                        password: password.password
+                    }
+                }
+            })
+            console.log(response);
+        } catch (error){
+            console.log(error)
+        }
+    }
+
     const style = {
         formstyle: {
             width: "20vw",
@@ -35,6 +90,10 @@ export default function UserCreate(props) {
         headerstyle: {
             fontSize: "45px",
             fontWeight: "bold"
+        },
+        passwordtext: {
+            color: "red",
+            fontWeight: "bold"
         }
     }
     return (
@@ -43,15 +102,20 @@ export default function UserCreate(props) {
             <form style={style.formposition}>
                 <p>Create your account and let's get started!</p>
                 <div>
-                    <input type="text" placeholder="Your Name" style={style.formstyle}></input>
+                    <input type="text" placeholder="Your Name" name="name" style={style.formstyle} onChange={handleInput} value={nameEmail.name}></input>
                 </div>
                 <div>
-                    <input type="text" placeholder="Email" style={style.formstyle}></input>
+                    <input type="text" placeholder="Email" name="email" style={style.formstyle} onChange={handleInput} value={nameEmail.email}></input>
                 </div>
                 <div>
-                    <input type="password" placeholder="Password" style={style.formstyle}></input>
+                    <input type="password" placeholder="Password" name="password" style={style.formstyle} onChange={handleInput} value={password.password}></input>
+                    <input type="password" placeholder="Repeat Password" name="repeat" style={style.formstyle} onChange={handleInput} value={password.repeat}></input>
                 </div>
-                <button style={style.createbutton}>Create Account</button>
+                <div>
+                    <p style={style.passwordtext}>{passwordMatch ? '' : 'Passwords do not match'}</p>
+                    <p style={style.passwordtext}>{passwordOk ? "" : "Password must be at least 8 characters"}</p>
+                </div>
+                <button style={style.createbutton} onClick={handleSubmit}>Create Account</button>
             </form>
         </div>
     )
