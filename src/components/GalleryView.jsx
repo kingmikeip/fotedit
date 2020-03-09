@@ -13,7 +13,9 @@ export default function GalleryView(props) {
     const [height, setHeight] = useState('25vw');
     const [width, setWidth] = useState('25vw')
     const [images, setImages] = useState([]);
+    const [imgProps, setImgProps] = useState({});
     let location = useLocation();
+
     location = location.pathname.split('/')[location.pathname.split('/').length - 1]
     console.log(location);
     let token = window.localStorage.getItem('Current User');
@@ -42,7 +44,8 @@ export default function GalleryView(props) {
             minHeight: "80vh",
             margin: "0 2.5%",
             display: "flex",
-            flexWrap: "wrap"
+            flexWrap: "wrap",
+            justifyContent: "space-between"
         },
         imagecontainer: {
             width: width,
@@ -106,9 +109,28 @@ export default function GalleryView(props) {
     //     });
     // }
 
-
-
     // readIptc();
+
+    const handleChange = (e) => {
+        console.log(e.target.type);
+        let temp = e.target.value;
+        let isChecked = e.target.checked;
+        let name = e.target.name;
+        if (e.target.type==='checkbox'){
+            setImgProps((prev) => ({ ...prev, [name]: {...imgProps[name], "select": isChecked}}))
+            console.log(e.target.checked)
+        } else {
+            setImgProps((prev) => ({ ...prev, [name]: {...imgProps[name], "sequence": temp}}))
+        }
+        console.log(imgProps);
+
+    }
+
+    const saveChange = () => {
+        // saves changes user made -- use for ... in
+        // creates new "gallery" as edit
+        
+    }
 
     return (
         <div>
@@ -126,8 +148,8 @@ export default function GalleryView(props) {
                     return (
                         <div style={style.imagecontainer} key={index}><img src={image.photourl} style={style.imgdimensions} />
                             <div style={style.checkboxdiv}>
-                                <input type="text" name={image.id} value={index+1} style={style.numberbox}/>
-                                <input type="checkbox" name={image.id} style={style.checkbox}/>
+                                <input type="text" name={image.id} defaultValue={index} style={style.numberbox} onChange={handleChange} />
+                                <input type="checkbox" name={image.id} style={style.checkbox} onChange={handleChange} />
                             </div>
                         </div>
                     )
