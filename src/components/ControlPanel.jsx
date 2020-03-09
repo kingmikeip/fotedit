@@ -70,6 +70,10 @@ export default function ControlPanel(props) {
             fontSize: "18px",
             textAlign: "right",
             marginLeft: "15px"
+        },
+        link: {
+            color: "black",
+            textDecoration: "none"
         }
     }
 
@@ -106,7 +110,7 @@ export default function ControlPanel(props) {
                 method: 'GET',
                 headers: { 'authorization': `bearer ${token}` }
             })
-            console.log(response.data)
+            // console.log(response.data)
             setGalleries(response.data);
         } catch (error) {
             console.log(error)
@@ -116,6 +120,26 @@ export default function ControlPanel(props) {
     // if (user.id) {
     //     getGalleries();
     // }
+
+    const deleteGallery = async (e) => {
+        let galleryId = e.target.getAttribute('id');
+        let galleryTitle = e.target.getAttribute('title');
+        let deleteCheck = prompt(`Are you sure you want to delete?\nPlease type '${galleryTitle}' to confirm`);
+        if (deleteCheck === galleryTitle) {
+            try {
+                let response = await axios({
+                    method: 'DELETE',
+                    url: `${apiUrl}/galleries/${galleryId}`,
+                    headers: { 'authorization': `bearer ${token}` }
+                })
+            } catch (error) {
+                console.log(error)
+            }
+
+            await getGalleries();
+        }
+    }
+
 
     return (
         <div>
@@ -131,7 +155,7 @@ export default function ControlPanel(props) {
                             return <div style={style.galleryitemcontainer} key={index}>
                                 <p style={style.galleryitem}>{gallery.title}</p>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext}>Share</p></div>
-                                <div style={style.galleryactions}><p style={style.galleryactionstext}>Delete</p></div>
+                                <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={deleteGallery} id={gallery.id} title={gallery.title} >Delete</p></div>
                             </div>
                         })}
 
@@ -140,9 +164,9 @@ export default function ControlPanel(props) {
                 <div style={style.rightdiv}>
                     <p>Account Info</p>
                     {/* Link to User Details** */}
-                    <p>Create New Edit</p>
+                    <p><Link to="/gallery-create" style={style.link}>Create New Edit</Link></p>
                     {/* Link to Gallery Create */}
-                    <p>Add an Edit</p>
+                    <p><Link to='/edit-add' style={style.link}>Add an Edit</Link></p>
                     {/* Link to Edit Add */}
                 </div>
             </div>
