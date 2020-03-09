@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Header from './shared/Header';
+// import iptc from 'iptc-reader'
+
 
 const apiUrl = 'http://localhost:3000';
 
@@ -47,12 +49,27 @@ export default function GalleryView(props) {
             height: height,
             border: "1px solid LightGray",
             margin: "2px",
-            backgroundColor: "LightGray"
+            backgroundColor: "LightGray",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
         },
         imgdimensions: {
-            width: "90%",
-            height: "90%",
+            width: "80%",
+            height: "80%",
             objectFit: "contain"
+        },
+        checkboxdiv: {
+            width: "100%",
+            textAlign: "right"
+        },
+        checkbox: {
+            width: "20px",
+            height: "20px"
+        },
+        numberbox: {
+            width: "30px",
+            height: "20px"
         }
 
     }
@@ -80,6 +97,18 @@ export default function GalleryView(props) {
 
     }, [])
 
+    // const readIptc = async () => {
+
+    //     let metadata;
+    //     images && images.map(async (image, index) => {
+    //         metadata = iptc(image)
+    //         console.log(metadata);
+    //     });
+    // }
+
+
+
+    // readIptc();
 
     return (
         <div>
@@ -95,7 +124,12 @@ export default function GalleryView(props) {
                 {/* Placeholder divs */}
                 {images && images.map((image, index) => {
                     return (
-                        <div style={style.imagecontainer} key={index}><img src={image.photourl} style={style.imgdimensions}/></div>
+                        <div style={style.imagecontainer} key={index}><img src={image.photourl} style={style.imgdimensions} />
+                            <div style={style.checkboxdiv}>
+                                <input type="text" name={image.id} value={index+1} style={style.numberbox}/>
+                                <input type="checkbox" name={image.id} style={style.checkbox}/>
+                            </div>
+                        </div>
                     )
                 })}
 
