@@ -60,7 +60,7 @@ export default function UserLogin(props) {
                 data: { email: input.email, password: input.password}
             })
             console.log(response)
-            window.localStorage.setItem([response.data.user.email], response.data.token )
+            window.localStorage.setItem("Current User", response.data.token )
             // goes to control panel
             if (response.status === 200){
                 history.push('/cp')
