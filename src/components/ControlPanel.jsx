@@ -117,10 +117,6 @@ export default function ControlPanel(props) {
         }
     }
 
-    // if (user.id) {
-    //     getGalleries();
-    // }
-
     const deleteGallery = async (e) => {
         let galleryId = e.target.getAttribute('id');
         let galleryTitle = e.target.getAttribute('title');
@@ -153,7 +149,7 @@ export default function ControlPanel(props) {
                     <div style={style.editbox}>
                         {galleries && galleries.map((gallery, index) => {
                             return <div style={style.galleryitemcontainer} key={index}>
-                                <p style={style.galleryitem}>{gallery.title}</p>
+                                <p style={style.galleryitem}><Link to={`/gallery/${gallery.id}`}>{gallery.title}</Link></p>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext}>Share</p></div>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={deleteGallery} id={gallery.id} title={gallery.title} >Delete</p></div>
                             </div>

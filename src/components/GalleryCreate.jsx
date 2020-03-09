@@ -62,7 +62,6 @@ export default function GalleryCreate() {
         }
     }
 
-    // const galleryId = 1;
     const [files, setFiles] = useState(null);
     const [gallery, setGallery] = useState({});
     const [galleryId, setGalleryId] = useState(null);

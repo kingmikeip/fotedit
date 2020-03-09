@@ -26,9 +26,9 @@ export default function Header (){
     return (
         <div style={style.header}>
             <NavLink to='/' style={style.fontsize}>File</NavLink>
-            <NavLink to='/edit' style={style.fontsize}>Edit</NavLink>
-            <NavLink to='/view' style={style.fontsize}>View</NavLink>
+            <NavLink to='/edit' style={style.fontsize}>Control</NavLink>
             <NavLink to='/help' style={style.fontsize}>Help</NavLink>
+            <NavLink to='/view' style={style.fontsize}>Log Out</NavLink>
         </div>
     )
 }

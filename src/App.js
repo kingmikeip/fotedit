@@ -49,7 +49,7 @@ function App() {
       <Route exact path='/' component={(props)=><UserLogin {...props}/>} />
       <Route exact path='/cp' component={(props)=><ControlPanel {...props}/>} />
       <Route exact path='/gallery-create' component={(props)=><GalleryCreate {...props}/>} />
-
+      <Route exact path='/gallery/:id' component={(props)=><GalleryView {...props}/>}/>
       <Route exact path='/edit-add' component={(props)=><EditAdd {...props}/>} />
     </div>
   );

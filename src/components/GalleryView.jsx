@@ -1,21 +1,20 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import Header from './shared/Header';
-import cat001 from './assets/cat001.jpg'
-import cat002 from './assets/cat002.jpg'
-import cat003 from './assets/cat003.jpg'
-import cat004 from './assets/cat004.jpg'
-import cat005 from './assets/cat005.jpg'
-import cat006 from './assets/cat006.jpg'
-import cat007 from './assets/cat007.jpg'
-import cat008 from './assets/cat008.jpg'
-import cat009 from './assets/cat009.jpg'
+
+const apiUrl = 'http://localhost:3000';
 
 // awaiting backend get
 
 export default function GalleryView(props) {
     const [height, setHeight] = useState('25vw');
     const [width, setWidth] = useState('25vw')
-
+    const [images, setImages] = useState([]);
+    let location = useLocation();
+    location = location.pathname.split('/')[location.pathname.split('/').length - 1]
+    console.log(location);
+    let token = window.localStorage.getItem('Current User');
 
     const style = {
         buttonstyle: {
@@ -57,6 +56,31 @@ export default function GalleryView(props) {
         }
 
     }
+
+    useEffect(() => {
+        // get all images for gallery and law it out
+
+        const getImages = async () => {
+            try {
+                let response = await axios({
+                    url: `${apiUrl}/galleries/${location}/photos`,
+                    headers: { 'authorization': `bearer ${token}` },
+                    method: 'GET'
+                })
+                console.log(response)
+                setImages(response.data);
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        getImages();
+
+
+    }, [])
+
+
     return (
         <div>
             <Header />
@@ -69,16 +93,12 @@ export default function GalleryView(props) {
             </div>
             <div style={style.gallerycontainer}>
                 {/* Placeholder divs */}
-                <div style={style.imagecontainer}><img src={cat001} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat002} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat003} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat004} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat005} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat006} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat007} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat008} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}><img src={cat009} style={style.imgdimensions}/></div>
-                <div style={style.imagecontainer}></div>
+                {images && images.map((image, index) => {
+                    return (
+                        <div style={style.imagecontainer} key={index}><img src={image.photourl} style={style.imgdimensions}/></div>
+                    )
+                })}
+
             </div>
         </div>
     )
