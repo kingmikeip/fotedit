@@ -11,6 +11,7 @@ import EditAdd from './components/EditAdd'
 import EditShare from './components/EditShare'
 import ImageView from './components/ImageView'
 import UserCreate from './components/UserCreate'
+import ControlPanel from './components/ControlPanel'
 
 /*
 App -> Header*
@@ -40,7 +41,8 @@ function App() {
       {/* <EditAdd /> */}
       {/* <EditShare /> */}
       {/* <ImageView /> */}
-      <UserCreate />
+      {/* <UserCreate /> */}
+      <ControlPanel />
     </div>
   );
 }
