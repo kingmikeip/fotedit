@@ -1,10 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import Splash from './shared/Splash'
+import axios from 'axios'
+
+const apiUrl = 'http://localhost:3000'
 
 // to do await backend auth
 
 export default function UserLogin(props) {
+
+    const [input, setInput] = useState({})
+    let history = useHistory();
+
     const style = {
         formstyle: {
             width: "20vw",
@@ -34,21 +41,47 @@ export default function UserLogin(props) {
             margin: "10px 0 0 0"
         }
     }
-    
-    // handleChange
-    // submit
+
+    const handleChange = (e) => {
+        // records input
+        let name = e.target.name;
+        let temp = e.target.value;
+        setInput((prev) => ({ ...prev, [name]: temp }))
+        // console.log(input)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+
+            let response = await axios({
+                url: `${apiUrl}/auth/login`,
+                method: 'POST',
+                data: { email: input.email, password: input.password}
+            })
+            console.log(response)
+            window.localStorage.setItem([response.data.user.email], response.data.token )
+            // goes to control panel
+            if (response.status === 200){
+                history.push('/cp')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
 
     return (
         <div>
             <Splash />
             <form style={style.formposition}>
                 <div>
-                <input type="text" placeholder="Email" style={style.formstyle}></input>
+                    <input type="text" placeholder="Email" style={style.formstyle} onChange={handleChange} name="email"></input>
                 </div>
                 <div>
-                <input type="text" placeholder="Password" style={style.formstyle}></input>
+                    <input type="password" placeholder="Password" style={style.formstyle} onChange={handleChange} name="password"></input>
                 </div>
-                <button style={style.loginbutton}>Login</button>
+                <button style={style.loginbutton} onClick={handleSubmit}>Login</button>
                 <p>Guest Editor?</p>
             </form>
         </div>

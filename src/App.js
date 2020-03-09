@@ -12,6 +12,7 @@ import EditShare from './components/EditShare'
 import ImageView from './components/ImageView'
 import UserCreate from './components/UserCreate'
 import ControlPanel from './components/ControlPanel'
+import Welcome from './components/shared/Welcome'
 
 /*
 App -> Header*
@@ -33,6 +34,7 @@ function App() {
   // add multiple in input for multiple files
   return (
     <div className="App">
+      {/* <Welcome /> */}
       {/* <Header/> */}
       {/* <UserLogin /> */}
       {/* <GuestLogin/> */}
@@ -42,7 +44,10 @@ function App() {
       {/* <EditShare /> */}
       {/* <ImageView /> */}
       {/* <UserCreate /> */}
-      <ControlPanel />
+      {/* <ControlPanel /> */}
+
+      <Route exact path='/' component={(props)=><UserLogin {...props}/>} />
+      <Route exact path='/cp' component={(props)=><ControlPanel {...props}/>} />
     </div>
   );
 }
