@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Header from './shared/Header'
-import axios from 'axios'
-const apiUrl = 'http://localhost:3000'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Header from './shared/Header';
+import axios from 'axios';
+const apiUrl = 'http://localhost:3000';
 
 // useEffect checks auth token
 // retrieve's user's name and list of edits
@@ -10,7 +11,7 @@ export default function ControlPanel(props) {
 
     // const [name,setName] = useState('User');
     const [user, setUser] = useState({})
-    const [galleries,setGalleries] = useState([])
+    const [galleries, setGalleries] = useState([])
 
     const style = {
         parentdiv: {
@@ -25,7 +26,7 @@ export default function ControlPanel(props) {
         },
         rightdiv: {
             width: "40vw",
-            backgroundColor: "green"
+            backgroundColor: "white"
         },
         editbox: {
             width: "80%",
@@ -33,7 +34,8 @@ export default function ControlPanel(props) {
             minHeight: "80%",
             backgroundColor: "pink",
             margin: "0 auto",
-            borderRadius: "6px"
+            borderRadius: "6px",
+            padding: "5px"
         },
         welcometext: {
             fontSize: "24px",
@@ -46,6 +48,28 @@ export default function ControlPanel(props) {
             fontFamily: "Helvetica",
             fontWeight: "bold",
             margin: "10px 0"
+        },
+        galleryitemcontainer: {
+            display: "flex",
+            background: "lightblue",
+            width: "100%"
+        },
+        galleryitem: {
+            fontFamily: "Helvetica",
+            fontSize: "18px",
+            textAlign: "left",
+            marginLeft: "15px",
+            width: "60%"
+        },
+        galleryactions: {
+            width: "18%",
+            marginRight: "10px"
+        },
+        galleryactionstext: {
+            fontFamily: "Helvetica",
+            fontSize: "18px",
+            textAlign: "right",
+            marginLeft: "15px"
         }
     }
 
@@ -103,10 +127,14 @@ export default function ControlPanel(props) {
                         <p style={style.edittext}>Your Current Edits</p>
                     </div>
                     <div style={style.editbox}>
-                    {galleries && galleries.map((gallery)=>{
-                        return <p>{gallery.title}</p>
-                    })}
-                    
+                        {galleries && galleries.map((gallery, index) => {
+                            return <div style={style.galleryitemcontainer} key={index}>
+                                <p style={style.galleryitem}>{gallery.title}</p>
+                                <div style={style.galleryactions}><p style={style.galleryactionstext}>Share</p></div>
+                                <div style={style.galleryactions}><p style={style.galleryactionstext}>Delete</p></div>
+                            </div>
+                        })}
+
                     </div>
                 </div>
                 <div style={style.rightdiv}>
