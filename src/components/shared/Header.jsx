@@ -3,7 +3,7 @@
 import React from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 
-export default function Header (){
+export default function Header() {
     let history = useHistory();
 
     const style = {
@@ -12,7 +12,8 @@ export default function Header (){
             backgroundColor: "DodgerBlue",
             display: "flex",
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: "space-between"
         },
         fontsize: {
             fontSize: '20px',
@@ -31,12 +32,18 @@ export default function Header (){
         history.push('/');
     }
 
+    // make Log Out on the right
+
     return (
         <div style={style.header}>
-            <NavLink to='/' style={style.fontsize}>File</NavLink>
-            <NavLink to='/cp' style={style.fontsize}>Control</NavLink>
-            <NavLink to='/help' style={style.fontsize}>Help</NavLink>
-            <NavLink to='/' style={style.fontsize} onClick={logOut}>Log Out</NavLink>
+            <div>
+                <NavLink to='/' style={style.fontsize}>File</NavLink>
+                <NavLink to='/cp' style={style.fontsize}>Control</NavLink>
+                <NavLink to='/help' style={style.fontsize}>Help</NavLink>
+            </div>
+            <div>
+                <NavLink to='/' style={style.fontsize} onClick={logOut}>Log Out</NavLink>
+            </div>
         </div>
     )
 }

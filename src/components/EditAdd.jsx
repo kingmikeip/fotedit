@@ -59,7 +59,7 @@ export default function EditAdd (props) {
     }
 
     const addEdit = async (e) => {
-        
+
     }
 
     return (
@@ -67,7 +67,7 @@ export default function EditAdd (props) {
             <Header />
         <div style={style.textwrapper}>
             <p style={style.welcometext}>Add an Edit</p>
-            <p style={style.welcometextsm}>Please enter an edit code and it will be added to your list of current events.</p>
+            <p style={style.welcometextsm}>Please enter an edit code and it will be added to your list of current edits.</p>
 
             <form style={style.formposition}>
                 <div>
