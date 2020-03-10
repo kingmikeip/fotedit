@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Header from './shared/Header'
 
 // waiting for back end
 
+// given share code - add edit to control panel
+
 export default function EditAdd (props) {
+
+    const [editCode, setEditCode] = useState('');
+    let token = window.localStorage.getItem("Current User");
+
     const style = {
         formstyle: {
             width: "20vw",
@@ -44,6 +50,18 @@ export default function EditAdd (props) {
             width: "70vw"
         }
     }
+
+    const handleChange = (e) => {
+        let temp = e.target.value;
+        let name = e.target.name;
+        setEditCode((prev)=>({...prev,[name]: temp}));
+        console.log(editCode);
+    }
+
+    const addEdit = async (e) => {
+        
+    }
+
     return (
         <div>
             <Header />
@@ -53,7 +71,7 @@ export default function EditAdd (props) {
 
             <form style={style.formposition}>
                 <div>
-                    <input type="text" placeholder="Edit Code" style={style.formstyle}></input>
+                    <input type="text" placeholder="Edit Code" name="editcode" style={style.formstyle} onChange={handleChange}></input>
                 </div>
                 <button style={style.loginbutton}>Add Edit</button>
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './shared/Header'
+import { useHistory } from 'react-router-dom'
 
 // awaiting backend 
 
@@ -74,10 +75,13 @@ export default function EditShare(props) {
     // handlechange
     // submit
     // generate share code?
+    let history = useHistory();
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("email sent!")
+        history.goBack();
     }
 
     return (
