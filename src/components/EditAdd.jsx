@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Header from './shared/Header';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom'
 const apiUrl = 'http://localhost:3000';
 
 // waiting for back end
 
 // given share code - add edit to control panel
 
-export default function EditAdd (props) {
+export default function EditAdd(props) {
 
     const [editCode, setEditCode] = useState('');
     let token = window.localStorage.getItem("Current User");
+    let history = useHistory();
 
     const style = {
         formstyle: {
@@ -58,7 +60,7 @@ export default function EditAdd (props) {
     const handleChange = (e) => {
         let temp = e.target.value;
         let name = e.target.name;
-        setEditCode((prev)=>({...prev,[name]: temp}));
+        setEditCode((prev) => ({ ...prev, [name]: temp }));
         console.log(editCode["editcode"]);
     }
 
@@ -67,17 +69,17 @@ export default function EditAdd (props) {
         let originalGalleryId;
         let newGalleryId;
         let edit = editCode["editcode"]
-        try{
+        try {
             let response = await axios({
                 method: 'POST',
                 url: `${apiUrl}/galleries/edit`,
                 headers: { 'authorization': `bearer ${token}` },
-                data: {edit}
+                data: { edit }
                 // hit endpoint to make 'dup' of a record
                 // finds edit based on shareCode and makes a copy of it
                 // owner stays the same but editor field is current user
             })
-            console.log(response);
+            // console.log(response);
             originalGalleryId = response.data.original_gallery
             newGalleryId = response.data.id
         } catch (error) {
@@ -89,9 +91,10 @@ export default function EditAdd (props) {
                 method: 'POST',
                 url: `${apiUrl}/galleries/${originalGalleryId}/photos/edit`,
                 headers: { 'authorization': `bearer ${token}` },
-                data: {new_gallery_id: newGalleryId}
+                data: { new_gallery_id: newGalleryId }
             })
-            console.log(response);
+            // console.log(response);
+            history.push('/cp');
         } catch (error) {
             console.log(error)
         }
@@ -100,18 +103,18 @@ export default function EditAdd (props) {
     return (
         <div>
             <Header />
-        <div style={style.textwrapper}>
-            <p style={style.welcometext}>Add an Edit</p>
-            <p style={style.welcometextsm}>Please enter an edit code and it will be added to your list of current edits.</p>
+            <div style={style.textwrapper}>
+                <p style={style.welcometext}>Add an Edit</p>
+                <p style={style.welcometextsm}>Please enter an edit code and it will be added to your list of current edits.</p>
 
-            <form style={style.formposition}>
-                <div>
-                    <input type="text" placeholder="Edit Code" name="editcode" style={style.formstyle} onChange={handleChange}></input>
-                </div>
-                <button style={style.loginbutton} onClick={addEdit}>Add Edit</button>
+                <form style={style.formposition}>
+                    <div>
+                        <input type="text" placeholder="Edit Code" name="editcode" style={style.formstyle} onChange={handleChange}></input>
+                    </div>
+                    <button style={style.loginbutton} onClick={addEdit}>Add Edit</button>
 
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
     )
 }

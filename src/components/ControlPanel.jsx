@@ -190,7 +190,7 @@ export default function ControlPanel(props) {
                         })}
                         {edits && edits.map((edit, index) => {
                             return <div style={style.galleryitemcontainer} key={index}>
-                                <p style={style.galleryitem}><Link to={`/gallery/${edit.id}`}>{edit.title}</Link></p>
+                                <p style={style.galleryitem}><Link to={`/gallery/${edit.id}`} style={style.gallerylink}>{edit.title}</Link></p>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={() => shareGallery(edit.id, edit.title, edit.sharecode)}>Share</p></div>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={deleteGallery} id={edit.id} title={edit.title}>Delete</p></div>
                             </div>
