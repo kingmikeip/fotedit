@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './shared/Header'
 
 // awaiting backend 
 
@@ -74,19 +75,27 @@ export default function EditShare(props) {
     // submit
     // generate share code?
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("email sent!")
+    }
+
     return (
+        <div>
+            <Header />
         <div style={style.formcontainer}>
             <p style={style.welcometext}>Share Edit</p>
             <div style={style.formleft}>
-                <input type="text" name="email" placeholder="Email address" style={style.formstyle} />
+                <input type="text" name="email" placeholder="Recipient Email" style={style.formstyle} />
             </div>
             <div>
-                <input type="text" name="subject" placeholder="Subject" style={style.subjectstyle} />
+                <input type="text" name="subject" placeholder="Subject" style={style.subjectstyle} defaultValue={`${props.history.location.state.name} would like to share an edit with you`}/>
             </div>
             <div>
-                <textarea placeholder="Email body" name="body" style={style.descriptionformstyle} />
+                <textarea placeholder="Email body" name="body" defaultValue={`Hello, I would like to share edit access to my gallery: ${props.history.location.state.title}. Please head over to FotEdit.com and enter in the edit code: ${props.history.location.state.sharecode} or follow this link: http://localhost:3001/guest-login/?editcode=${props.history.location.state.sharecode}. Happy edits!`} style={style.descriptionformstyle} />
             </div>
-            <button style={style.submitbutton}>Send</button>
+            <button style={style.submitbutton} onClick={handleSubmit}>Send</button>
+        </div>
         </div>
     )
 }

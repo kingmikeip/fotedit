@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Header from './shared/Header';
 import axios from 'axios';
 const apiUrl = 'http://localhost:3000';
@@ -12,7 +12,7 @@ export default function ControlPanel(props) {
     // const [name,setName] = useState('User');
     const [user, setUser] = useState({})
     const [galleries, setGalleries] = useState([])
-
+    let history = useHistory();
     const style = {
         parentdiv: {
             display: "flex",
@@ -136,6 +136,13 @@ export default function ControlPanel(props) {
         }
     }
 
+    const shareGallery = (id,title,sharecode) => {
+        history.push({
+            pathname: '/edit-share',
+            state: {id: id, title: title, name: user.name, sharecode: sharecode}
+        });
+    }
+
 
     return (
         <div>
@@ -150,7 +157,7 @@ export default function ControlPanel(props) {
                         {galleries && galleries.map((gallery, index) => {
                             return <div style={style.galleryitemcontainer} key={index}>
                                 <p style={style.galleryitem}><Link to={`/gallery/${gallery.id}`}>{gallery.title}</Link></p>
-                                <div style={style.galleryactions}><p style={style.galleryactionstext}>Share</p></div>
+                                <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={()=>shareGallery(gallery.id,gallery.title,gallery.sharecode)}>Share</p></div>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={deleteGallery} id={gallery.id} title={gallery.title}>Delete</p></div>
                             </div>
                         })}

@@ -16,7 +16,7 @@ export default function EditAdd (props) {
         },
         formposition: {
             position: "absolute",
-            top: "40%",
+            top: "50%",
             left: "40%",
             textAlign: "center"
         },

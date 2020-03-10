@@ -39,6 +39,10 @@ export default function UserLogin(props) {
             fontSize: "16px",
             fontWeight: "bold",
             margin: "10px 0 0 0"
+        },
+        guestlogin: {
+            textDecoration: "none",
+            color: "black"
         }
     }
 
@@ -82,7 +86,7 @@ export default function UserLogin(props) {
                     <input type="password" placeholder="Password" style={style.formstyle} onChange={handleChange} name="password"></input>
                 </div>
                 <button style={style.loginbutton} onClick={handleSubmit}>Login</button>
-                <p>Guest Editor?</p>
+                <p><Link to='/guest-login' style={style.guestlogin}>Guest Editor? Login Here</Link></p>
             </form>
         </div>
     )

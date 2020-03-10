@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 // awaiting backend route
 
@@ -41,6 +41,9 @@ export default function GuestLogin(props) {
         }
     }
 
+    let location = useLocation();
+    let search = location.search.split("=")[1]
+    // console.log(search)
     // handleChange
     // submit
 
@@ -55,7 +58,7 @@ export default function GuestLogin(props) {
                     <input type="text" placeholder="Your Name" style={style.formstyle}></input>
                 </div>
                 <div>
-                    <input type="text" placeholder="Edit Code" style={style.formstyle}></input>
+                    <input type="text" placeholder="Edit Code" style={style.formstyle} name="editcode" defaultValue={search}></input>
                 </div>
                 <button style={style.loginbutton}>Let's Go!</button>
 
