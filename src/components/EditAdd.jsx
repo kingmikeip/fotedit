@@ -64,7 +64,8 @@ export default function EditAdd (props) {
 
     const addEdit = async (e) => {
         e.preventDefault();
-        let galleryId;
+        let originalGalleryId;
+        let newGalleryId;
         let edit = editCode["editcode"]
         try{
             let response = await axios({
@@ -77,7 +78,8 @@ export default function EditAdd (props) {
                 // owner stays the same but editor field is current user
             })
             console.log(response);
-            galleryId = response.data.id
+            originalGalleryId = response.data.original_gallery
+            newGalleryId = response.data.id
         } catch (error) {
             console.log(error)
         }
@@ -85,9 +87,9 @@ export default function EditAdd (props) {
         try {
             let response = await axios({
                 method: 'POST',
-                url: `${apiUrl}/galleries/${galleryId}/photos/edit`,
+                url: `${apiUrl}/galleries/${originalGalleryId}/photos/edit`,
                 headers: { 'authorization': `bearer ${token}` },
-                data: {}
+                data: {new_gallery_id: newGalleryId}
             })
             console.log(response);
         } catch (error) {
