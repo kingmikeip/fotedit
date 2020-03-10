@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from './shared/Header';
-// import iptc from 'iptc-reader'
+// still needs to save sequence and selects
+// order, reload, save, zoom and sort-by
 
 
 const apiUrl = 'http://localhost:3000';
 
-// awaiting backend get
 
 export default function GalleryView(props) {
     const [height, setHeight] = useState('25vw');
@@ -15,6 +15,7 @@ export default function GalleryView(props) {
     const [images, setImages] = useState([]);
     const [imgProps, setImgProps] = useState({});
     let location = useLocation();
+    let history = useHistory();
 
     location = location.pathname.split('/')[location.pathname.split('/').length - 1]
     console.log(location);
@@ -129,7 +130,11 @@ export default function GalleryView(props) {
     const saveChange = () => {
         // saves changes user made -- use for ... in
         // creates new "gallery" as edit
-        
+
+    }
+
+    const biggerImage = (id) => {
+        history.push(`/gallery/${location}/image/${id}`)
     }
 
     return (
@@ -146,12 +151,17 @@ export default function GalleryView(props) {
                 {/* Placeholder divs */}
                 {images && images.map((image, index) => {
                     return (
-                        <div style={style.imagecontainer} key={index}><img src={image.photourl} style={style.imgdimensions} />
+                        
+                        <div style={style.imagecontainer} key={index}>
+                            {/* <Link to={`/image/${image.id}`}> */}
+                            <img src={image.photourl} style={style.imgdimensions} onDoubleClick={() => biggerImage(image.id)}/>
+               
                             <div style={style.checkboxdiv}>
                                 <input type="text" name={image.id} defaultValue={index} style={style.numberbox} onChange={handleChange} />
                                 <input type="checkbox" name={image.id} style={style.checkbox} onChange={handleChange} />
                             </div>
                         </div>
+                        
                     )
                 })}
 

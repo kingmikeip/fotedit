@@ -151,7 +151,7 @@ export default function ControlPanel(props) {
                             return <div style={style.galleryitemcontainer} key={index}>
                                 <p style={style.galleryitem}><Link to={`/gallery/${gallery.id}`}>{gallery.title}</Link></p>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext}>Share</p></div>
-                                <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={deleteGallery} id={gallery.id} title={gallery.title} >Delete</p></div>
+                                <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={deleteGallery} id={gallery.id} title={gallery.title}>Delete</p></div>
                             </div>
                         })}
 
