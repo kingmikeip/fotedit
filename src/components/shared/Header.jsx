@@ -1,9 +1,11 @@
 // build in drop down menus -- replace Navlink 
 
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 export default function Header (){
+    let history = useHistory();
+
     const style = {
         header: {
             height: "6vh",
@@ -23,12 +25,18 @@ export default function Header (){
             color: "white"
         }
     }
+
+    const logOut = () => {
+        window.localStorage.removeItem("Current User");
+        history.push('/');
+    }
+
     return (
         <div style={style.header}>
             <NavLink to='/' style={style.fontsize}>File</NavLink>
-            <NavLink to='/edit' style={style.fontsize}>Control</NavLink>
+            <NavLink to='/cp' style={style.fontsize}>Control</NavLink>
             <NavLink to='/help' style={style.fontsize}>Help</NavLink>
-            <NavLink to='/view' style={style.fontsize}>Log Out</NavLink>
+            <NavLink to='/' style={style.fontsize} onClick={logOut}>Log Out</NavLink>
         </div>
     )
 }

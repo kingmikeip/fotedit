@@ -27,7 +27,15 @@ export default function ImageView(props) {
         },
         imagestyle: {
             width: "80%",
-            border: "1px solid black"
+            border: "1px solid black",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        },
+        image: {
+            width: "95%",
+            height: "70vh",
+            objectFit: "cover"
         },
         exifstyle: {
             width: "19%",
@@ -67,10 +75,11 @@ export default function ImageView(props) {
             <Header />
             <div style={style.bodystyle}>
                 <div style={style.topstyle}>
-                    <div style={style.imagestyle}><img src={image && image.photourl}/></div>
+                    <div style={style.imagestyle}>
+                        <img src={image && image.photourl} style={style.image}/></div>
                     <div style={style.exifstyle}>Exif</div>
                 </div>
-                <div style={style.captionstyle}>Cpation Info</div>
+                <div style={style.captionstyle}>Caption Info</div>
             </div>
         </div>
     )
