@@ -43,6 +43,9 @@ export default function UserLogin(props) {
         guestlogin: {
             textDecoration: "none",
             color: "black"
+        },
+        pstyle: {
+            margin: "8px 0 0 0"
         }
     }
 
@@ -86,7 +89,8 @@ export default function UserLogin(props) {
                     <input type="password" placeholder="Password" style={style.formstyle} onChange={handleChange} name="password"></input>
                 </div>
                 <button style={style.loginbutton} onClick={handleSubmit}>Login</button>
-                <p><Link to='/guest-login' style={style.guestlogin}>Guest Editor? Login Here</Link></p>
+                <p style={style.pstyle}><Link to='/guest-login' style={style.guestlogin}>Guest Editor? Login Here</Link></p>
+                <p style={style.pstyle}><Link to='/create-user' style={style.guestlogin}>New user? Create an account</Link></p>
             </form>
         </div>
     )

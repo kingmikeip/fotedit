@@ -1,7 +1,6 @@
-// user create -> need to redirect to control panel (needs to be made)
-
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const apiUrl = 'http://localhost:3000'
 
@@ -11,6 +10,10 @@ export default function UserCreate(props) {
     const [password, setPassword] = useState({});
     const [passwordOk, setPasswordOk] = useState(true);
     const [passwordMatch, setPasswordMatch] = useState(true);
+    const [created, setCreated] = useState(false);
+    const [countdown, setCountdown] = useState('5');
+
+    let history = useHistory();
 
     const handleInput = (e) => {
         let temp = e.target.value;
@@ -39,7 +42,7 @@ export default function UserCreate(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("creating user")
+        // console.log("creating user")
         try {
             let response = await axios({
                 url: `${apiUrl}/users`,
@@ -53,9 +56,27 @@ export default function UserCreate(props) {
                     }
                 }
             })
-            console.log(response);
-        } catch (error){
-            console.log(error)
+            console.log(response.data);
+            window.localStorage.setItem("Current User", response.data.token);
+            setCreated(true);
+
+            let counter = 5;
+            let interval;
+
+            interval = setInterval(() => {
+                counter = counter - 1;
+                setCountdown(counter)
+                console.log(counter);
+                if (counter == 0) {
+                    clearInterval(interval);
+                    return history.push('/');
+                }
+            }, 1000);
+
+
+        } catch (error) {
+            console.log(error);
+            alert(error);
         }
     }
 
@@ -116,6 +137,7 @@ export default function UserCreate(props) {
                     <p style={style.passwordtext}>{passwordOk ? "" : "Password must be at least 8 characters"}</p>
                 </div>
                 <button style={style.createbutton} onClick={handleSubmit}>Create Account</button>
+                <p>{created ? `Account created! Re-directing in ${countdown} seconds` : ""}</p>
             </form>
         </div>
     )

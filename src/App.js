@@ -13,6 +13,7 @@ import ImageView from './components/ImageView'
 import UserCreate from './components/UserCreate'
 import ControlPanel from './components/ControlPanel'
 import Welcome from './components/shared/Welcome'
+import Help from './components/Help'
 
 /*
 App -> Header*
@@ -47,7 +48,9 @@ function App() {
       {/* <ControlPanel /> */}
 
       <Route exact path='/' component={(props)=><UserLogin {...props}/>} />
+      <Route exact path='/create-user' component={(props)=><UserCreate {...props} />} />
       <Route exact path='/cp' component={(props)=><ControlPanel {...props}/>} />
+      <Route exact path='/help' component={Help} />
       <Route exact path='/gallery-create' component={(props)=><GalleryCreate {...props}/>} />
       <Route exact path='/gallery/:id' component={(props)=><GalleryView {...props}/>}/>
       <Route exact path='/guest-login' component={(props)=><GuestLogin {...props}/>}/>

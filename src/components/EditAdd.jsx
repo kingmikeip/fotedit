@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
-import Header from './shared/Header'
+import React, {useState} from 'react';
+import Header from './shared/Header';
+import axios from 'axios';
+const apiUrl = 'http://localhost:3000';
 
 // waiting for back end
 
@@ -51,6 +53,8 @@ export default function EditAdd (props) {
         }
     }
 
+
+
     const handleChange = (e) => {
         let temp = e.target.value;
         let name = e.target.name;
@@ -59,7 +63,22 @@ export default function EditAdd (props) {
     }
 
     const addEdit = async (e) => {
+        e.preventDefault();
+        try{
+            let response = await axios({
+                method: 'POST',
+                url: `${apiUrl}/galleries/edit`,
+                headers: { 'authorization': `bearer ${token}` },
+                data: {editCode}
+                // hit endpoint to make 'dup' of a record
+                // finds edit based on shareCode and makes a copy of it
+                // owner stays the same but editor field is current user
+            })
+            console.log(response);
 
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -73,7 +92,7 @@ export default function EditAdd (props) {
                 <div>
                     <input type="text" placeholder="Edit Code" name="editcode" style={style.formstyle} onChange={handleChange}></input>
                 </div>
-                <button style={style.loginbutton}>Add Edit</button>
+                <button style={style.loginbutton} onClick={addEdit}>Add Edit</button>
 
             </form>
         </div>
