@@ -126,14 +126,6 @@ export default function GalleryCreate() {
     }
 
     const fileUpload = async (photo,galleryTemp) => {
-        // need to post gallery to get gallery ID to post images 
-        // let photo = new FormData();
-        // for (let i = 0; i < files.length; i++) {
-        //     photo.append('picture', files[i])
-        //     // console.log(files[i])
-        // }
-
-        // console.log(galleryTemp)
 
         let token = window.localStorage.getItem("Current User")
         try {
@@ -148,7 +140,6 @@ export default function GalleryCreate() {
                 //     console.log(`Progress ${Math.round((progressEvent.loaded / progressEvent.total)*100)}`)
                 // }
             });
-            // console.log(response);
 
         } catch (error) {
             console.log(error);

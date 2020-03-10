@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Header from './shared/Header';
 import axios from 'axios';
+import landlord from '../assets/landlord.png'
 const apiUrl = 'http://localhost:3000';
+
 
 // useEffect checks auth token
 // retrieve's user's name and list of edits
@@ -76,6 +78,14 @@ export default function ControlPanel(props) {
         link: {
             color: "black",
             textDecoration: "none"
+        },
+        ownericon: {
+            width: '20px',
+            height: '20px'
+        },
+        gallerylink: {
+            textDecoration: 'none',
+            color: "black"
         }
     }
 
@@ -149,6 +159,7 @@ export default function ControlPanel(props) {
             }
 
             await getGalleries();
+            await getEdits();
         }
     }
 
@@ -172,7 +183,7 @@ export default function ControlPanel(props) {
                     <div style={style.editbox}>
                         {galleries && galleries.map((gallery, index) => {
                             return <div style={style.galleryitemcontainer} key={index}>
-                                <p style={style.galleryitem}><Link to={`/gallery/${gallery.id}`}>{gallery.title} OWNER</Link></p>
+                                <p style={style.galleryitem}><Link to={`/gallery/${gallery.id}`} style={style.gallerylink}>{gallery.title} <img src={landlord} style={style.ownericon}/></Link></p>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={() => shareGallery(gallery.id, gallery.title, gallery.sharecode)}>Share</p></div>
                                 <div style={style.galleryactions}><p style={style.galleryactionstext} onClick={deleteGallery} id={gallery.id} title={gallery.title}>Delete</p></div>
                             </div>

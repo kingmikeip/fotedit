@@ -59,23 +59,37 @@ export default function EditAdd (props) {
         let temp = e.target.value;
         let name = e.target.name;
         setEditCode((prev)=>({...prev,[name]: temp}));
-        console.log(editCode);
+        console.log(editCode["editcode"]);
     }
 
     const addEdit = async (e) => {
         e.preventDefault();
+        let galleryId;
+        let edit = editCode["editcode"]
         try{
             let response = await axios({
                 method: 'POST',
                 url: `${apiUrl}/galleries/edit`,
                 headers: { 'authorization': `bearer ${token}` },
-                data: {editCode}
+                data: {edit}
                 // hit endpoint to make 'dup' of a record
                 // finds edit based on shareCode and makes a copy of it
                 // owner stays the same but editor field is current user
             })
             console.log(response);
+            galleryId = response.data.id
+        } catch (error) {
+            console.log(error)
+        }
 
+        try {
+            let response = await axios({
+                method: 'POST',
+                url: `${apiUrl}/galleries/${galleryId}/photos/edit`,
+                headers: { 'authorization': `bearer ${token}` },
+                data: {}
+            })
+            console.log(response);
         } catch (error) {
             console.log(error)
         }
