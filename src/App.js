@@ -14,6 +14,7 @@ import UserCreate from './components/UserCreate'
 import ControlPanel from './components/ControlPanel'
 import Welcome from './components/shared/Welcome'
 import Help from './components/Help'
+import UserDetails from './components/UserDetails'
 
 /*
 App -> Header*
@@ -49,6 +50,7 @@ function App() {
       <Route exact path='/edit-add' component={(props)=><EditAdd {...props}/>} />
       <Route exact path='/edit-share' component={(props)=><EditShare {...props}/>} />
       <Route exact path='/gallery/:id/image/:id' component={(props)=><ImageView {...props} />} />
+      <Route exact path='/user-details/:id' component={(props)=><UserDetails {...props} />} />
     </div>
   );
 }

@@ -29,6 +29,7 @@ export default function ControlPanel(props) {
             backgroundColor: "white"
         },
         rightdiv: {
+            marginTop: "10vh",
             width: "40vw",
             backgroundColor: "white"
         },
@@ -77,7 +78,10 @@ export default function ControlPanel(props) {
         },
         link: {
             color: "black",
-            textDecoration: "none"
+            textDecoration: "none",
+            fontSize: "20px",
+            fontFamily: "Helvetica",
+            fontWeight: "bold"
         },
         ownericon: {
             width: '20px',
@@ -200,7 +204,7 @@ export default function ControlPanel(props) {
                     </div>
                 </div>
                 <div style={style.rightdiv}>
-                    <p>Account Info</p>
+                    <p><Link to={`/user-details/${user.id}`} style={style.link}>Account Info</Link></p>
                     {/* Link to User Details** */}
                     <p><Link to="/gallery-create" style={style.link}>Create New Edit</Link></p>
                     {/* Link to Gallery Create */}
