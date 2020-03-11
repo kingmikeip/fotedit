@@ -136,7 +136,7 @@ export default function UserCreate(props) {
                     <p style={style.passwordtext}>{passwordMatch ? '' : 'Passwords do not match'}</p>
                     <p style={style.passwordtext}>{passwordOk ? "" : "Password must be at least 8 characters"}</p>
                 </div>
-                <button style={style.createbutton} onClick={handleSubmit}>Create Account</button>
+                <button style={style.createbutton} onClick={handleSubmit} disabled={!passwordOk}>Create Account</button>
                 <p>{created ? `Account created! Re-directing in ${countdown} seconds` : ""}</p>
             </form>
         </div>
