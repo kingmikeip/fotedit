@@ -15,6 +15,7 @@ import ControlPanel from './components/ControlPanel'
 import Welcome from './components/shared/Welcome'
 import Help from './components/Help'
 import UserDetails from './components/UserDetails'
+import Test from './components/Test'
 
 /*
 App -> Header*
@@ -39,6 +40,7 @@ function App() {
       {/* <Welcome /> */}
       {/* <GuestLogin/> */}
       {/* <UserDetails /> */}
+      {/* <Test /> */}
 
       <Route exact path='/' component={(props)=><UserLogin {...props}/>} />
       <Route exact path='/create-user' component={(props)=><UserCreate {...props} />} />

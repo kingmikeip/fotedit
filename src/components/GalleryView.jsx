@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from './shared/Header';
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 // still needs to save sequence and selects
 // order, reload, save, zoom and sort-by
@@ -15,8 +16,11 @@ export default function GalleryView(props) {
     const [width, setWidth] = useState('25vw')
     const [images, setImages] = useState([]);
     const [imgProps, setImgProps] = useState({});
+    const [open, setOpen] = useState(false);
+    const [zoom,setZoom] = useState('large')
     let location = useLocation();
     let history = useHistory();
+    let container = useRef();
 
     location = location.pathname.split('/')[location.pathname.split('/').length - 1]
     console.log(location);
@@ -75,6 +79,38 @@ export default function GalleryView(props) {
         numberbox: {
             width: "30px",
             height: "20px"
+        },
+        zoomcontainer: {
+            display: "inline-block",
+            position: "relative"
+        },
+        zoombutton: {
+            padding: "0",
+            width: '50px',
+            border: '0',
+            backgroundColor: '#fff',
+            color: '#333',
+            cursor: 'pointer',
+            outline: '0',
+            fontSize: '40px'
+        },
+        zoomdropdown: {
+            position: "absolute",
+            top: "100%",
+            left: '0',
+            width: "120px",
+            zIndex: '999',
+            backgroundColor: "rgba(255,255,255,0.7)",
+            border: '1px solid rgba(0,0,0,0.04)',
+            boxShadow: '0 16px 24px 2px rgba(0,0,0,0.14)'
+        },
+        zoomul: {
+            listStyle: "none",
+            padding: "0",
+            margin: "0"
+        },
+        zoomli: {
+            padding: "8px 12px",
         }
 
     }
@@ -98,8 +134,9 @@ export default function GalleryView(props) {
         // get all images for gallery and law it out
 
         getImages();
+        document.addEventListener("mousedown", handleClickOutside);
 
-
+        return ()=> {document.removeEventListener("mousedown", handleClickOutside)}
     }, [])
 
 
@@ -160,8 +197,24 @@ export default function GalleryView(props) {
 
     }
 
+    const handleButtonClick = () => {
+        setOpen(!open);
+    }
+
+    const handleClickOutside = (event) => {
+        if (container.current && !container.current.contains(event.target)){
+            setOpen(false);
+        }
+    }
+
     const biggerImage = (id) => {
         history.push(`/gallery/${location}/image/${id}`)
+    }
+
+    const handleZoom = (e) => {
+        e.preventDefault();
+        let name = e.target.getAttribute('name');
+        console.log(name);
     }
 
     return (
@@ -170,7 +223,27 @@ export default function GalleryView(props) {
             <div style={style.buttoncontainer}>
                 <button style={style.buttonstyle} onClick={reloadPage}>Reload</button>
                 <button style={style.buttonstyle}>Sort By</button>
-                <button style={style.buttonstyle}>Zoom</button>
+                {/* <button style={style.buttonstyle}>Zoom</button> */}
+
+                <div style={style.zoomcontainer} ref={container}>
+                <button style={style.buttonstyle} onClick={handleButtonClick}>Zoom</button>
+                {/* <button type="button" style={style.zoombutton} onClick={handleButtonClick}>
+                    O
+                </button> */}
+                {open && (
+
+                    <div style={style.zoomdropdown}>
+                    <ul style={style.zoomul}>
+                        <li style={style.zoomli} name="small" onClick={handleZoom}>Small</li>
+                        <li style={style.zoomli} name="medium" onClick={handleZoom}>Medium</li>
+                        <li style={style.zoomli} name="large" onClick={handleZoom}>Large</li>
+                        <li style={style.zoomli} name="xlarge" onClick={handleZoom}>X-Large</li>
+                    </ul>
+                </div>
+                )
+                }
+            </div>
+
                 <button style={style.buttonstyle}>EditName</button>
                 <button style={style.buttonstyle} onClick={saveChange}>Save</button>
             </div>
