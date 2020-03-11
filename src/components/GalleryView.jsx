@@ -79,24 +79,23 @@ export default function GalleryView(props) {
 
     }
 
+    const getImages = async () => {
+        try {
+            let response = await axios({
+                url: `${apiUrl}/galleries/${location}/photos`,
+                headers: { 'authorization': `bearer ${token}` },
+                method: 'GET'
+            })
+            console.log(response)
+            setImages(response.data);
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         // get all images for gallery and law it out
-
-        const getImages = async () => {
-            try {
-                let response = await axios({
-                    url: `${apiUrl}/galleries/${location}/photos`,
-                    headers: { 'authorization': `bearer ${token}` },
-                    method: 'GET'
-                })
-                console.log(response)
-                setImages(response.data);
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
 
         getImages();
 
@@ -104,7 +103,13 @@ export default function GalleryView(props) {
     }, [])
 
 
-    const reloadPage = () => {
+    const reloadPage = async () => {
+        if (Object.keys(imgProps).length !==0){
+            console.log(Object.keys(imgProps).length);
+            await saveChange();
+        }
+        // await getImages();
+        window.location.reload();
         // saves images then reloads it
     }
 
@@ -132,9 +137,9 @@ export default function GalleryView(props) {
 
     const saveChange = async () => {
         const changes = Object.entries(imgProps);
-        console.log(changes)
-        changes.map(change=>{
-            saveImageProps(change);
+        // console.log(changes)
+        changes.map(async (change)=>{
+            await saveImageProps(change);
         })
     }
 
@@ -163,7 +168,7 @@ export default function GalleryView(props) {
         <div>
             <Header />
             <div style={style.buttoncontainer}>
-                <button style={style.buttonstyle}>Reload</button>
+                <button style={style.buttonstyle} onClick={reloadPage}>Reload</button>
                 <button style={style.buttonstyle}>Sort By</button>
                 <button style={style.buttonstyle}>Zoom</button>
                 <button style={style.buttonstyle}>EditName</button>
