@@ -74,6 +74,14 @@ export default function UserDetails() {
             alignItems: "center",
             borderBottom: "1px solid black"
         },
+        infodivpw: {
+            display: "flex",
+            flexDirection: "column",
+            height: "80px",
+            justifyContent: "center",
+            alignItems: "center",
+            borderBottom: "1px solid black"
+        },
         infodivbottom: {
             display: "flex",
             height: "40px",
@@ -84,7 +92,15 @@ export default function UserDetails() {
             fontSize: '20px',
             fontWeight: 'bold',
             padding: "0",
-            margin: "0"
+            margin: "0",
+            textAlign: "center"
+        },
+        passwordform: {
+            fontSize: '20px',
+            fontWeight: 'bold',
+            padding: "0",
+            margin: "0",
+            textAlign: "center"
         }
     }
 
@@ -118,7 +134,7 @@ export default function UserDetails() {
                     <div style={style.infodiv}>
                         <p style={style.text}>Work Group -></p>
                     </div>
-                    <div style={style.infodiv}>
+                    <div style={style.infodivpw}>
                         <p style={style.text}>Update Password -></p>
                     </div>
                     <div style={style.infodivbottom}>
@@ -130,19 +146,24 @@ export default function UserDetails() {
                         <p style={style.text}>{userInfo && userInfo.id}</p>
                     </div>
                     <div style={style.infodiv}>
-                        <p style={style.text}>{userInfo && userInfo.name}</p>
+                        <input type="text" defaultValue={userInfo && userInfo.name} style={style.text} />
                     </div>
                     <div style={style.infodiv}>
-                        <p style={style.text}>{userInfo && userInfo.email}</p>
+                        <input type="text" defaultValue={userInfo && userInfo.email} style={style.text} />
                     </div>
                     <div style={style.infodiv}>
                         <p style={style.text}>{userInfo && userInfo.group || "None"}</p>
                     </div>
-                    <div style={style.infodiv}>
-                        <p style={style.text}>Update Password -></p>
+                    <div style={style.infodivpw}>
+                        <div>
+                            <input type="password" placeholder="Password" name="password" style={style.passwordform}></input>
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Repeat Password" style={style.passwordform}></input>
+                        </div>
                     </div>
                     <div style={style.infodivbottom}>
-                        <p style={style.text}>Delete Account -></p>
+                        <button><p style={style.text}>Delete Account</p></button>
                     </div>
                 </div>
             </div>
