@@ -67,6 +67,7 @@ export default function GalleryCreate() {
     const [galleryId, setGalleryId] = useState(null);
     let token = window.localStorage.getItem("Current User")
     let history = useHistory();
+    
     const handleFile = (e) => {
         setFiles(e.target.files);
         // console.log(e.target.files);

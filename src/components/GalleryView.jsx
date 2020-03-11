@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from './shared/Header';
+
 // still needs to save sequence and selects
 // order, reload, save, zoom and sort-by
 
@@ -78,6 +79,7 @@ export default function GalleryView(props) {
 
     }
 
+
     useEffect(() => {
         // get all images for gallery and law it out
 
@@ -101,16 +103,17 @@ export default function GalleryView(props) {
 
     }, [])
 
-    // const readIptc = async () => {
 
-    //     let metadata;
-    //     images && images.map(async (image, index) => {
-    //         metadata = iptc(image)
-    //         console.log(metadata);
-    //     });
-    // }
+    const reloadPage = () => {
+        // saves images then reloads it
+    }
 
-    // readIptc();
+    const sortBy = () => {
+        // file name
+        // selected
+        // sequence number
+    }
+
 
     const handleChange = (e) => {
         console.log(e.target.type);
@@ -127,9 +130,28 @@ export default function GalleryView(props) {
 
     }
 
-    const saveChange = () => {
+    const saveChange = async () => {
+        const changes = Object.entries(imgProps);
+        console.log(changes)
+        changes.map(change=>{
+            saveImageProps(change);
+        })
+    }
+
+    const saveImageProps = async (image) => {
         // saves changes user made -- use for ... in
-        // creates new "gallery" as edit
+        try {
+            let response = await axios({
+                method: 'PUT',
+                url: `${apiUrl}/galleries/${location}/photos/${image[0]}`,
+                data: {isselected: image[1].select, sequencenumber: image[1].sequence},
+                headers: {'authorization': `bearer ${token}`}
+            })
+            console.log(response);
+            // console.log(image[1].select, image[1].sequence)
+        } catch (error) {
+            console.log(error);
+        }
 
     }
 
@@ -145,11 +167,12 @@ export default function GalleryView(props) {
                 <button style={style.buttonstyle}>Sort By</button>
                 <button style={style.buttonstyle}>Zoom</button>
                 <button style={style.buttonstyle}>EditName</button>
-                <button style={style.buttonstyle}>Save</button>
+                <button style={style.buttonstyle} onClick={saveChange}>Save</button>
             </div>
             <div style={style.gallerycontainer}>
                 {/* Placeholder divs */}
-                {images && images.map((image, index) => {
+                {images && images.sort((a,b)=>{return a.sequencenumber-b.sequencenumber}).map((image, index) => {
+                    
                     return (
                         
                         <div style={style.imagecontainer} key={index}>
@@ -157,8 +180,8 @@ export default function GalleryView(props) {
                             <img src={image.photourl} style={style.imgdimensions} onDoubleClick={() => biggerImage(image.id)}/>
                
                             <div style={style.checkboxdiv}>
-                                <input type="text" name={image.id} defaultValue={index} style={style.numberbox} onChange={handleChange} />
-                                <input type="checkbox" name={image.id} style={style.checkbox} onChange={handleChange} />
+                                <input type="text" name={image.id} defaultValue={image.sequencenumber} style={style.numberbox} onChange={handleChange} />
+                                <input type="checkbox" name={image.id} style={style.checkbox} onChange={handleChange} defaultChecked={image.isselected? "checked" : ""} />
                             </div>
                         </div>
                         

@@ -36,16 +36,8 @@ function App() {
   return (
     <div className="App">
       {/* <Welcome /> */}
-      {/* <Header/> */}
-      {/* <UserLogin /> */}
       {/* <GuestLogin/> */}
-      {/* <GalleryCreate /> */}
-      {/* <GalleryView /> */}
-      {/* <EditAdd /> */}
-      {/* <EditShare /> */}
-      {/* <ImageView /> */}
-      {/* <UserCreate /> */}
-      {/* <ControlPanel /> */}
+      {/* <UserDetails /> */}
 
       <Route exact path='/' component={(props)=><UserLogin {...props}/>} />
       <Route exact path='/create-user' component={(props)=><UserCreate {...props} />} />

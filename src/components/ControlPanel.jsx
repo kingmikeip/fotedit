@@ -36,7 +36,7 @@ export default function ControlPanel(props) {
             width: "80%",
             height: "auto",
             minHeight: "80%",
-            backgroundColor: "pink",
+            backgroundColor: "lightblue",
             margin: "0 auto",
             borderRadius: "6px",
             padding: "5px"
@@ -55,7 +55,7 @@ export default function ControlPanel(props) {
         },
         galleryitemcontainer: {
             display: "flex",
-            background: "lightblue",
+            // background: "lightblue",
             width: "100%"
         },
         galleryitem: {
