@@ -70,15 +70,25 @@ export default function GalleryView(props) {
         },
         checkboxdiv: {
             width: "100%",
-            textAlign: "right"
+            height: "20%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            alignItems: "center"
         },
         checkbox: {
             width: "20px",
-            height: "20px"
+            height: "20px",
+            margin: "0 5px"
         },
         numberbox: {
-            width: "30px",
-            height: "20px"
+            width: "20%",
+            maxWidth: "60px",
+            height: "80%",
+            fontSize: "3vh",
+            border: "0",
+            margin: "0"
+
         },
         zoomcontainer: {
             display: "inline-block",
@@ -97,8 +107,8 @@ export default function GalleryView(props) {
         zoomdropdown: {
             position: "absolute",
             top: "100%",
-            left: '0',
-            width: "120px",
+            left: '10px',
+            width: "12vw",
             zIndex: '999',
             backgroundColor: "rgba(255,255,255,0.7)",
             border: '1px solid rgba(0,0,0,0.04)',
