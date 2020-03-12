@@ -67,7 +67,6 @@ These wireframes will be for desktop and tablet views. They will look similar wi
 | ControlPanel   | User info and brains of the app |
 | UserDelete     | Deletes user        |
 | GalleryShare   | Generates share code, shares with others |
-| Main           | Loads images and allows gallery operations |
 | GalleryCreate  | User uploads images and creates galleries |
 | GalleryView    | Overview of images, displays and allows editing here. Images can be sorted, tagged and ordered here |
 | ImageView      | View single image. User can zoom in, comment or select images | 
@@ -77,26 +76,28 @@ These wireframes will be for desktop and tablet views. They will look similar wi
 
 UserController
 GalleryController
-EditController
 PhotoController
 
 #### Routes
 
 | Controller | Operation | VERB | Route |
 |-------|---------|------------|---------|
-| User  | #view | GET | /user/:id|
+| Authentication | login | POST | /auth/login |
+| Authentication | verify | GET | /auth/verify |
+| User  | #show | GET | /user/:id|
 | User | #create | POST | /user |
-| User | #update | Put | /user/:id |
-| User | #delete | DELETE | /user/:id |
-| Gallery | #index | GET | /user/:id/gallery
-| Gallery | #view | GET | /gallery/:id|
-| Gallery | #create | POST | /gallery |
-| Gallery | #update | Put | /gallery/:id |
-| Gallery | #delete | DELETE | /gallery/:id |
-| Photo  | #view | GET | /gallery/:gallery_id/photo/:id|
-| Photo | #create | POST | /gallery/:gallery_id/photo |
-| Photo | #update | Put | /gallery/:gallery_id/photo/:id |
-| Photo | #delete | DELETE | /gallery/:gallery_id/photo/:id |
+| User | #update | PUT | /user/:id |
+| User | #destroy | DELETE | /user/:id |
+| Gallery | #index | GET | /gallery
+| Gallery | #show | GET | /galleries/:id|
+| Gallery | #create | POST | /galleries |
+| Gallery | #update | PUT | /galleries/:id |
+| Gallery | #destroy | DELETE | /galleries/:id |
+| Photo  | #index | GET | /galleries/:gallery_id/photos
+| Photo  | #view | GET | /gallery/:gallery_id/photos/:id|
+| Photo | #create | POST | /gallery/:gallery_id/photos |
+| Photo | #update | PUT | /gallery/:gallery_id/photos/:id |
+| Photo | #delete | DELETE | /gallery/:gallery_id/photos/:id |
 
 
 #### Priority Matrix
@@ -109,10 +110,11 @@ PhotoController
 | File Uploads (Front End) | H | 8 hrs | 12 hrs | |
 | Upload to AWS | H | 12 hrs | 12 hrs | | 
 | Images retrieved and rendered front end | H | 8 hrs | 8 hrs | |
-| User Auth | H | 14 hrs | 6 hrs | |
+| Image view and menu | H | 10 hrs | 6 hrs | |
+| User Auth | H | 14 hrs | 10 hrs | |
 | Sharing | M | 5 hrs | 4 hr | |
-| Styling | M | 8 hrs | 4 hrs | | 
-| Total | | 67 hrs | 62 hrs | |
+| Styling | M | 8 hrs | 10 hrs | | 
+| Total | | 77 hrs | 78 hrs | |
 
 ### Project Schedule
 | Day | Deliverable | Status |
@@ -148,7 +150,10 @@ PhotoController
 ### Project Change Log
 
 - Updated Gallery Model to add 'original_gallery'
-- Removed UserDelete, Main component 
+- Removed Main component - combined it with control panel
+- Added UserDetails, Help, GuestLogin, EditAdd components
+- Added various shared components
+- Added UserDelete function to UserDetails component
 
 ### Code Showcase
 

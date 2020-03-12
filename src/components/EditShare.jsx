@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './shared/Header'
 import { useHistory } from 'react-router-dom'
 
-// awaiting backend 
+// awaiting backend -> renamed to Gallery Share
 
 export default function EditShare(props) {
     const style = {
