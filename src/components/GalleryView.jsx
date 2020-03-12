@@ -17,7 +17,7 @@ export default function GalleryView(props) {
     const [images, setImages] = useState([]);
     const [imgProps, setImgProps] = useState({});
     const [open, setOpen] = useState(false);
-    const [zoom,setZoom] = useState('large')
+    const [zoom, setZoom] = useState('large')
     let location = useLocation();
     let history = useHistory();
     let container = useRef();
@@ -136,12 +136,12 @@ export default function GalleryView(props) {
         getImages();
         document.addEventListener("mousedown", handleClickOutside);
 
-        return ()=> {document.removeEventListener("mousedown", handleClickOutside)}
+        return () => { document.removeEventListener("mousedown", handleClickOutside) }
     }, [])
 
 
     const reloadPage = async () => {
-        if (Object.keys(imgProps).length !==0){
+        if (Object.keys(imgProps).length !== 0) {
             console.log(Object.keys(imgProps).length);
             await saveChange();
         }
@@ -162,11 +162,11 @@ export default function GalleryView(props) {
         let temp = e.target.value;
         let isChecked = e.target.checked;
         let name = e.target.name;
-        if (e.target.type==='checkbox'){
-            setImgProps((prev) => ({ ...prev, [name]: {...imgProps[name], "select": isChecked}}))
+        if (e.target.type === 'checkbox') {
+            setImgProps((prev) => ({ ...prev, [name]: { ...imgProps[name], "select": isChecked } }))
             console.log(e.target.checked)
         } else {
-            setImgProps((prev) => ({ ...prev, [name]: {...imgProps[name], "sequence": temp}}))
+            setImgProps((prev) => ({ ...prev, [name]: { ...imgProps[name], "sequence": temp } }))
         }
         console.log(imgProps);
 
@@ -175,7 +175,7 @@ export default function GalleryView(props) {
     const saveChange = async () => {
         const changes = Object.entries(imgProps);
         // console.log(changes)
-        changes.map(async (change)=>{
+        changes.map(async (change) => {
             await saveImageProps(change);
         })
     }
@@ -186,8 +186,8 @@ export default function GalleryView(props) {
             let response = await axios({
                 method: 'PUT',
                 url: `${apiUrl}/galleries/${location}/photos/${image[0]}`,
-                data: {isselected: image[1].select, sequencenumber: image[1].sequence},
-                headers: {'authorization': `bearer ${token}`}
+                data: { isselected: image[1].select, sequencenumber: image[1].sequence },
+                headers: { 'authorization': `bearer ${token}` }
             })
             console.log(response);
             // console.log(image[1].select, image[1].sequence)
@@ -202,7 +202,7 @@ export default function GalleryView(props) {
     }
 
     const handleClickOutside = (event) => {
-        if (container.current && !container.current.contains(event.target)){
+        if (container.current && !container.current.contains(event.target)) {
             setOpen(false);
         }
     }
@@ -212,9 +212,34 @@ export default function GalleryView(props) {
     }
 
     const handleZoom = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let name = e.target.getAttribute('name');
-        console.log(name);
+
+        setOpen(!open);
+
+        // console.log(name);
+        switch (name) {
+            case 'small':
+                setHeight('15vh');
+                setWidth('15vw');
+                break;
+            case 'medium':
+                setHeight('25vh');
+                setWidth('25vw');
+                break;
+            case 'large':
+                setHeight('33vh');
+                setWidth('33vw');
+                break;
+            case 'xlarge':
+                setHeight('45vh');
+                setWidth('45vw');
+                break;
+            default:
+                setHeight('25vh');
+                setWidth('25vw');
+                break;
+        }
     }
 
     return (
@@ -226,43 +251,43 @@ export default function GalleryView(props) {
                 {/* <button style={style.buttonstyle}>Zoom</button> */}
 
                 <div style={style.zoomcontainer} ref={container}>
-                <button style={style.buttonstyle} onClick={handleButtonClick}>Zoom</button>
-                {/* <button type="button" style={style.zoombutton} onClick={handleButtonClick}>
+                    <button style={style.buttonstyle} onClick={handleButtonClick}>Zoom</button>
+                    {/* <button type="button" style={style.zoombutton} onClick={handleButtonClick}>
                     O
                 </button> */}
-                {open && (
+                    {open && (
 
-                    <div style={style.zoomdropdown}>
-                    <ul style={style.zoomul}>
-                        <li style={style.zoomli} name="small" onClick={handleZoom}>Small</li>
-                        <li style={style.zoomli} name="medium" onClick={handleZoom}>Medium</li>
-                        <li style={style.zoomli} name="large" onClick={handleZoom}>Large</li>
-                        <li style={style.zoomli} name="xlarge" onClick={handleZoom}>X-Large</li>
-                    </ul>
+                        <div style={style.zoomdropdown}>
+                            <ul style={style.zoomul}>
+                                <li style={style.zoomli} name="small" onClick={handleZoom}>Small</li>
+                                <li style={style.zoomli} name="medium" onClick={handleZoom}>Medium</li>
+                                <li style={style.zoomli} name="large" onClick={handleZoom}>Large</li>
+                                <li style={style.zoomli} name="xlarge" onClick={handleZoom}>X-Large</li>
+                            </ul>
+                        </div>
+                    )
+                    }
                 </div>
-                )
-                }
-            </div>
 
                 <button style={style.buttonstyle}>EditName</button>
                 <button style={style.buttonstyle} onClick={saveChange}>Save</button>
             </div>
             <div style={style.gallerycontainer}>
                 {/* Placeholder divs */}
-                {images && images.sort((a,b)=>{return a.sequencenumber-b.sequencenumber}).map((image, index) => {
-                    
+                {images && images.sort((a, b) => { return a.sequencenumber - b.sequencenumber }).map((image, index) => {
+
                     return (
-                        
+
                         <div style={style.imagecontainer} key={index}>
                             {/* <Link to={`/image/${image.id}`}> */}
-                            <img src={image.photourl} style={style.imgdimensions} onDoubleClick={() => biggerImage(image.id)}/>
-               
+                            <img src={image.photourl} style={style.imgdimensions} onDoubleClick={() => biggerImage(image.id)} />
+
                             <div style={style.checkboxdiv}>
                                 <input type="text" name={image.id} defaultValue={image.sequencenumber} style={style.numberbox} onChange={handleChange} />
-                                <input type="checkbox" name={image.id} style={style.checkbox} onChange={handleChange} defaultChecked={image.isselected? "checked" : ""} />
+                                <input type="checkbox" name={image.id} style={style.checkbox} onChange={handleChange} defaultChecked={image.isselected ? "checked" : ""} />
                             </div>
                         </div>
-                        
+
                     )
                 })}
 
