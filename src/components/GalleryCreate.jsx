@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-const apiUrl = 'http://localhost:3000'
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 
 // To Do - create gallery with axios post (awaiting backend routes)
 // test multiple file uploads, single working

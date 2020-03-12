@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-
-const apiUrl = 'http://localhost:3000'
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 
 export default function UserCreate(props) {
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import Header from './shared/Header'
-const apiUrl = 'http://localhost:3000'
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 
 
 export default function UserDetails() {

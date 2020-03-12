@@ -3,12 +3,13 @@ import { useLocation, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from './shared/Header';
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 
 // still needs to save sequence and selects
 // order, reload, save, zoom and sort-by
 
 
-const apiUrl = 'http://localhost:3000';
 
 
 export default function GalleryView(props) {

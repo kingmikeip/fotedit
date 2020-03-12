@@ -3,7 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import Header from './shared/Header';
 import axios from 'axios';
 import landlord from '../assets/landlord.png'
-const apiUrl = 'http://localhost:3000';
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 
 
 // useEffect checks auth token

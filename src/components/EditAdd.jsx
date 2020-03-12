@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Header from './shared/Header';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
-const apiUrl = 'http://localhost:3000';
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 
 // waiting for back end
 

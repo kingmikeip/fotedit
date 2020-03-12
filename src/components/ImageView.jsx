@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
 import Header from './shared/Header';
 import axios from 'axios'
-
-const apiUrl = 'http://localhost:3000';
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 // need image information
 
 export default function ImageView(props) {

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Splash from './shared/Splash'
 import axios from 'axios'
-
-const apiUrl = 'http://localhost:3000'
+import ApiLink from './shared/ApiLink';
+const apiUrl = ApiLink;
 
 // to do await backend auth
 
