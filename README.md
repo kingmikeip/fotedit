@@ -30,18 +30,18 @@ These wireframes will be for desktop and tablet views. They will look similar wi
 
 #### *MVP*
 
-- get wireframe built out
-- get Rails backend working to handle image uploads
-- get React working to display images
-- images can be reordered by number or drag order
-- images can have comments or checks
-- user can share out galleries with unique share codes
-- Rails stores images on cloud 
-- create new users, login, delete or edit account details
+- get wireframe built out ^
+- get Rails backend working to handle image uploads ^
+- get React working to display images ^
+- images can be reordered by number ^
+- images can have comments or select checks *
+- user can share out galleries with unique share codes * 
+- Rails stores images on cloud ^
+- create new users, login, delete or edit account details ^
 
 #### *Post MVP*
 
-- persist sessions, guest sessions
+- persist sessions, guest sessions *
 - drag to reorder images
 - OAuth 
 - later social aspect will be added so users in a group can be invited for an edit
@@ -52,7 +52,6 @@ These wireframes will be for desktop and tablet views. They will look similar wi
 - add unlimited size and number of images upload
 - email confirmation of shares, new gallery created
 - pay structure for heavy users
-
 
 ### React Component Hierarchy
 
@@ -119,12 +118,12 @@ PhotoController
 | Day | Deliverable | Status |
 |------|------------|------------|
 | March 5 | Project approval | Complete |
-| March 6 | Wireframe built out | In progress |
-| March 7-8 | Rails server + File uploading working | In Progress |
-| March 9 | User Auth | | 
-| March 10 | Front End Functional (Images loading) | |
-| March 11 | Front End Fully Functional + Sharing | |
-| March 12 | Bug Fixing and styling | |
+| March 6 | Wireframe built out | Complete |
+| March 7-8 | Rails server + File uploading working | Complete |
+| March 9 | User Auth | Complete | 
+| March 10 | Front End Functional (Images loading) | Complete |
+| March 11 | Front End Fully Functional + Sharing | In Progress |
+| March 12 | Bug Fixing and styling | In Progress|
 
 
 ## Additional Libraries
@@ -132,18 +131,26 @@ PhotoController
 
 - Axios
 - React Router 
-- React-Draggable
+- React-Draggable (Post MVP)
 
 ### Rails
 
 - Exif-js or exif-reader
 - CORS
 - bcrypt
-- AWS
+- AWS-S3
+- JWT
 
 ### ERD
 
 ![](./assets/FotEdit_ERD.jpg)
+
+### Project Change Log
+
+- Updated Gallery Model to add 'original_gallery'
+- Removed UserDelete, Main component 
+
+### Code Showcase
 
 ### Issues and Resolutions
 
